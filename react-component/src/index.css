@@ -29,7 +29,7 @@ body {
   display: block;
   background-color: #333;
   width: 2px;
-  height: 90%;
+  height: calc(100% - 10px);
   top: 50%;
   transform: translateY(-50%);
   left: 4px;
