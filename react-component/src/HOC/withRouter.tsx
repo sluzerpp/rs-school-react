@@ -1,14 +1,12 @@
 import React from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-/** @deprecated Use `React Router hooks` instead */
 export interface WithRouterProps {
   location: ReturnType<typeof useLocation>;
   params: Record<string, string>;
   navigate: ReturnType<typeof useNavigate>;
 }
 
-/** @deprecated Use `React Router hooks` instead */
 export const withRouter = <Props extends WithRouterProps>(
   Component: React.ComponentType<Props>
 ) => {

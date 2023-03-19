@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import Page404 from './pages/Page404';
 import MainPage from './pages/MainPage';
-import { NavigationWithRouter } from './components/Navigation';
+import { NavigationWithRouter } from './components/Navigation/Navigation';
 
 function App() {
   return (
