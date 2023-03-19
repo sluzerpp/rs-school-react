@@ -1,5 +1,5 @@
 import React from 'react';
-import { it, describe, expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { render } from '@testing-library/react';
 import { CardData } from './src/model/CardData';
 import App from './src/App';
