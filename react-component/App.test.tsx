@@ -5,6 +5,7 @@ import { CardData } from './src/model/CardData';
 import App from './src/App';
 import Card from './src/components/Card/Card';
 import CardList from './src/components/CardList/CardList';
+import Forms from './src/pages/Forms';
 
 describe('Cards', () => {
   CardData.forEach((data) => {
@@ -18,6 +19,12 @@ describe('Cards', () => {
       const { queryAllByText } = render(<CardList projects={CardData}></CardList>);
       expect(queryAllByText(new RegExp(`${data.name}`, 'i')));
     });
+  });
+});
+
+describe('Forms', () => {
+  test('render Forms', () => {
+    expect(render(<Forms />));
   });
 });
 

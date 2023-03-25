@@ -16,5 +16,5 @@
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["./src/**/*", "styled.d.ts", "Card.test.tsx"]
+  "include": ["./src/**/*", "styled.d.ts", "App.test.tsx"]
 }
