@@ -11,14 +11,16 @@ type CardProps = {
 
 export default class Card extends Component<CardProps> {
   render() {
-    const { name, img, creator, views, likes, tags } = this.props.project;
+    const { name, img, creator, views, likes, tags, date, isImportant } = this.props.project;
     return (
       <div className="card">
         <div className="card__img" style={{ backgroundImage: `url(${img})` }}></div>
+        {isImportant && <div className="card__important">Important</div>}
         <div className="card__content">
           <a href="#" className="card__title">
             {name}
           </a>
+          <div className="card__date">{date.toLocaleDateString()}</div>
           <a href="#" className="card__creator">
             by <span>{creator}</span>
           </a>

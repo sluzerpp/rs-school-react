@@ -1,11 +1,31 @@
 .card-list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-@media (max-width: 360px) {
+.card-list__title {
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  grid-column: 1/5;
+}
+
+@media (max-width: 1200px) {
+  .card-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
   .card-list {
     grid-template-columns: 1fr;
   }

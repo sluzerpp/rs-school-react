@@ -12,9 +12,11 @@ export default class CardList extends Component<CardListProps> {
     const { projects } = this.props;
     return (
       <div className="card-list">
-        {projects.map((project) => (
-          <Card key={project.id} project={project} />
-        ))}
+        {projects.length > 0 ? (
+          projects.map((project) => <Card key={project.id} project={project} />)
+        ) : (
+          <h2 className="card-list__title">Пусто</h2>
+        )}
       </div>
     );
   }

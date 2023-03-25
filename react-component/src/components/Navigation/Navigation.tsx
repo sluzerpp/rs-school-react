@@ -15,6 +15,7 @@ class Navigation extends Component<WithRouterProps> {
   static paths = [
     { path: '/', name: 'Main' },
     { path: '/about', name: 'About' },
+    { path: '/forms', name: 'Forms' },
   ];
 
   render() {

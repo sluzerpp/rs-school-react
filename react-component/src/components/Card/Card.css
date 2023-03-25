@@ -3,6 +3,7 @@
   border-radius: 10px;
   box-shadow: 0 0 5px #33333370;
   background-color: #ffffff90;
+  position: relative;
 }
 
 .card svg {
@@ -19,6 +20,18 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.card__important {
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  font-weight: bold;
+  color: rgb(230, 130, 0);
+  background-color: #ffffff;
+  padding: 6px 16px 8px 10px;
+  border-radius: 0 20px 5px 0;
+  box-shadow: 0 0 5px #33333370;
 }
 
 .card__content {
