@@ -24,11 +24,11 @@ class Navigation extends Component<WithRouterProps> {
       <nav className="nav">
         <div className="container">
           <div className="nav__inner">
-            <div className="nav__path">
+            <h1 className="nav__path">
               {Navigation.paths.find((path) => path.path === location.pathname)
                 ? location.pathname
                 : '/404'}
-            </div>
+            </h1>
             <div className="nav__links">
               {Navigation.paths.map((path) => (
                 <NavLink key={path.path} to={path.path} className={getLinkClass}>

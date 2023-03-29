@@ -18,7 +18,7 @@ export default class Card extends Component<CardProps> {
         {isImportant && <div className="card__important">Important</div>}
         <div className="card__content">
           <a href="#" className="card__title">
-            {name}
+            <h2>{name}</h2>
           </a>
           <div className="card__date">{date.toLocaleDateString()}</div>
           <a href="#" className="card__creator">

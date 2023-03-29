@@ -2,6 +2,13 @@ import { IFormProjectData } from 'model/CardData';
 import React, { Component, createRef, RefObject } from 'react';
 import './CardForm.css';
 
+type ValidState = {
+  tags: boolean;
+  date: boolean;
+  name: boolean;
+  img: boolean;
+};
+
 type CardFormState = {
   formRef: RefObject<HTMLFormElement>;
   tagsGroupRef: RefObject<HTMLDivElement>;
@@ -12,6 +19,8 @@ type CardFormState = {
   importantRef: RefObject<HTMLInputElement>;
   imgRef: RefObject<HTMLInputElement>;
   creatorRef: RefObject<HTMLSelectElement>;
+  isValid: ValidState;
+  isSuccess: boolean;
 };
 
 type CardFormProps = {
@@ -31,6 +40,13 @@ export default class CardForm extends Component<CardFormProps, CardFormState> {
     importantRef: createRef<HTMLInputElement>(),
     imgRef: createRef<HTMLInputElement>(),
     creatorRef: createRef<HTMLSelectElement>(),
+    isValid: {
+      tags: true,
+      date: true,
+      name: true,
+      img: true,
+    },
+    isSuccess: false,
   };
 
   constructor(props: CardFormProps) {
@@ -75,24 +91,42 @@ export default class CardForm extends Component<CardFormProps, CardFormState> {
       isImportant: false,
     };
     if (nameRef.current.value === '') {
-      nameRef.current.classList.add('invalid');
+      this.setState((prev) => {
+        prev.isValid.name = false;
+        return prev;
+      });
       answer = false;
     } else {
-      nameRef.current.classList.remove('invalid');
+      this.setState((prev) => {
+        prev.isValid.name = true;
+        return prev;
+      });
       data.name = nameRef.current.value;
     }
     if (dateRef.current && !dateRef.current.value) {
-      dateRef.current.classList.add('invalid');
+      this.setState((prev) => {
+        prev.isValid.date = false;
+        return prev;
+      });
       answer = false;
     } else {
-      dateRef.current.classList.remove('invalid');
+      this.setState((prev) => {
+        prev.isValid.date = true;
+        return prev;
+      });
       data.date = new Date(dateRef.current.value);
     }
     if (!tagRefs.some((el) => el.current?.checked)) {
-      tagsGroupRef.current.classList.add('invalid');
+      this.setState((prev) => {
+        prev.isValid.tags = false;
+        return prev;
+      });
       answer = false;
     } else {
-      tagsGroupRef.current.classList.remove('invalid');
+      this.setState((prev) => {
+        prev.isValid.tags = true;
+        return prev;
+      });
       data.tags = tagRefs
         .filter((el) => el.current && el.current.checked)
         .map((el) => el.current?.value || '');
@@ -102,10 +136,16 @@ export default class CardForm extends Component<CardFormProps, CardFormState> {
       imgRef.current.files.length === 0 ||
       !imgRef.current.files[0].type.includes('image')
     ) {
-      imgRef.current.classList.add('invalid');
+      this.setState((prev) => {
+        prev.isValid.img = false;
+        return prev;
+      });
       answer = false;
     } else {
-      imgRef.current.classList.remove('invalid');
+      this.setState((prev) => {
+        prev.isValid.img = true;
+        return prev;
+      });
       data.img = URL.createObjectURL(imgRef.current.files[0]);
     }
     if (answer) {
@@ -122,9 +162,9 @@ export default class CardForm extends Component<CardFormProps, CardFormState> {
     if (!data) return;
     this.props.submitCallback(data);
     if (this.state.formRef.current) {
-      this.state.formRef.current.classList.add('success');
+      this.setState({ ...this.state, isSuccess: true });
       setTimeout(() => {
-        this.state.formRef.current?.classList.remove('success');
+        this.setState({ ...this.state, isSuccess: false });
       }, 3000);
       this.state.formRef.current.reset();
     }
@@ -132,13 +172,31 @@ export default class CardForm extends Component<CardFormProps, CardFormState> {
   }
 
   render() {
+    const { isValid, isSuccess } = this.state;
     return (
-      <form ref={this.state.formRef} className="form" onSubmit={this.onSubmit}>
-        <input ref={this.state.nameRef} className="form__text" type="text" placeholder="Name" />
+      <form
+        ref={this.state.formRef}
+        className={`form ${isSuccess ? 'success' : ''}`}
+        onSubmit={this.onSubmit}
+      >
+        <input
+          ref={this.state.nameRef}
+          className={`form__text ${isValid.name ? '' : 'invalid'}`}
+          type="text"
+          placeholder="Name"
+        />
         <div className="error">Invalid name!</div>
-        <input ref={this.state.dateRef} className="form__date" type="date" placeholder="Date" />
+        <input
+          ref={this.state.dateRef}
+          className={`form__date ${isValid.date ? '' : 'invalid'}`}
+          type="date"
+          placeholder="Date"
+        />
         <div className="error">Invalid date!</div>
-        <div ref={this.state.tagsGroupRef} className="form__group">
+        <div
+          ref={this.state.tagsGroupRef}
+          className={`form__group ${isValid.tags ? '' : 'invalid'}`}
+        >
           <div className="form__group-name">Tags</div>
           {this.state.tagRefs.map((ref, id) => {
             return (
@@ -156,7 +214,11 @@ export default class CardForm extends Component<CardFormProps, CardFormState> {
           <option value="Vova">Vova</option>
           <option value="Sluzer">Sluzer</option>
         </select>
-        <input ref={this.state.imgRef} className="form__file" type="file" />
+        <input
+          ref={this.state.imgRef}
+          className={`form__file ${isValid.img ? '' : 'invalid'}`}
+          type="file"
+        />
         <div className="error">Invalid file!</div>
         <div ref={this.state.radioGroupRef} className="form__group">
           <label className="form__radio">

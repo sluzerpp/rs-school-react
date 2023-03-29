@@ -1,15 +1,15 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import Page404 from './pages/Page404';
 import MainPage from './pages/MainPage';
 import { NavigationWithRouter } from './components/Navigation/Navigation';
 import Forms from './pages/Forms';
 
-function App() {
-  return (
-    <BrowserRouter>
+class App extends React.Component {
+  render() {
+    return (
       <div className="app">
         <NavigationWithRouter></NavigationWithRouter>
         <Routes>
@@ -19,8 +19,8 @@ function App() {
           <Route path="/*" element={<Page404 />}></Route>
         </Routes>
       </div>
-    </BrowserRouter>
-  );
+    );
+  }
 }
 
 export default App;
