@@ -26,7 +26,7 @@ export default function CardForm({ submitCallback }: CardFormProps) {
   } = useForm<CardFormData>({ defaultValues: { creator: 'Anonim' } });
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const fileValidate = (files: FileList, data: CardFormData) => {
+  const fileValidate = (files: FileList) => {
     if (!files[0].type.includes('image')) {
       return 'Only IMGs are valid!  ';
     }
