@@ -7,20 +7,18 @@ import MainPage from './pages/MainPage';
 import Navigation from './components/Navigation/Navigation';
 import Forms from './pages/Forms';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="app">
-        <Navigation></Navigation>
-        <Routes>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/forms" element={<Forms />}></Route>
-          <Route path="/*" element={<Page404 />}></Route>
-        </Routes>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="app">
+      <Navigation></Navigation>
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
+        <Route path="/forms" element={<Forms />}></Route>
+        <Route path="/*" element={<Page404 />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
