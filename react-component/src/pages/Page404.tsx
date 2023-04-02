@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Page404 extends Component {
-  render() {
-    return <div>Page404</div>;
-  }
+export default function Page404() {
+  return <div>Page404</div>;
 }
