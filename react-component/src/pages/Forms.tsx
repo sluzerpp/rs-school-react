@@ -1,6 +1,6 @@
-import CardForm from '../components/CardForm/CardForm';
+import CardForm, { CardFormData } from '../components/CardForm/CardForm';
 import React, { Component } from 'react';
-import { IFormProjectData, IProjectData } from 'model/CardData';
+import { IProjectData } from 'model/CardData';
 import CardList from '../components/CardList/CardList';
 
 type IFormsState = {
@@ -19,9 +19,16 @@ export default class Forms extends Component<object, IFormsState> {
     this.addCard = this.addCard.bind(this);
   }
 
-  addCard(data: IFormProjectData) {
+  addCard(data: CardFormData) {
+    const url = URL.createObjectURL(data.img[0]);
     this.setState((prev) => {
-      prev.cards.push({ ...data, id: this.state.currentId });
+      prev.cards.push({
+        ...data,
+        img: url,
+        likes: 0,
+        views: 0,
+        id: this.state.currentId,
+      });
       return { cards: prev.cards, currentId: prev.currentId + 1 };
     });
   }
