@@ -23,7 +23,11 @@ export default function CardForm({ submitCallback }: CardFormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<CardFormData>({ defaultValues: { creator: 'Anonim' } });
+  } = useForm<CardFormData>({
+    defaultValues: { creator: 'Anonim' },
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
   const [isSuccess, setIsSuccess] = useState(false);
 
   const fileValidate = (files: FileList) => {
