@@ -1,8 +1,9 @@
 import './SearchBar.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function SearchBar() {
   const [value, setValue] = useState('');
+  const searchRef = useRef(value);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -16,12 +17,16 @@ export default function SearchBar() {
     }
   };
 
-  useEffect(getFromLocalStorage, []);
   useEffect(() => {
-    return () => {
-      localStorage.setItem('search', value);
-    };
+    searchRef.current = value;
   }, [value]);
+
+  useEffect(() => {
+    getFromLocalStorage();
+    return () => {
+      localStorage.setItem('search', searchRef.current);
+    };
+  }, []);
 
   return (
     <div className="search">
