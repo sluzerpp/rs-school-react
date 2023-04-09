@@ -15,6 +15,7 @@ export default defineConfig({
     coverage: {
       provider: 'c8',
       all: true,
+      exclude: ['**/*.config.ts', '**/*.d.ts', '**/*.test.tsx', '**/types.ts'],
     },
   },
 });

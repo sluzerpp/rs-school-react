@@ -15,7 +15,7 @@ export default function CardModal({ character, toggle }: ModalProps) {
   };
 
   return (
-    <div onClick={onModalBgClick} className={styles.modal}>
+    <div role="group" onClick={onModalBgClick} className={styles.modal}>
       <div className={styles.content}>
         <button onClick={toggle} className={styles.close}>
           x
