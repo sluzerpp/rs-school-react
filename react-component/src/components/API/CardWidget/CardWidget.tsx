@@ -64,7 +64,7 @@ export default function CardWidget() {
       </div>
       {!isLoading ? (
         <>
-          <h2>Found {response ? response.info.count : 0} characters</h2>
+          <h2>Found {response && response.info ? response.info.count : 0} characters</h2>
           <ListAPI toggle={toggleModal} characters={response ? response.results : []}></ListAPI>
         </>
       ) : (
