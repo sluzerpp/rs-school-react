@@ -1,0 +1,101 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 10px;
+  font-size: 16px;
+  padding: 20px;
+  background-color: #ffffff90;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #33333370;
+  position: relative;
+}
+
+.form input {
+  outline: transparent;
+  border-radius: 5px;
+}
+
+.form__text,
+.form__date,
+.form__select,
+.form__file {
+  padding: 5px;
+  outline: transparent;
+  font-size: 14px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.form__group {
+  border: 1px solid #333;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 10px;
+}
+
+.form__group-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+.form__group label {
+  display: flex;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.form__btn {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 10px;
+  outline: transparent;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.05s ease-in-out;
+}
+
+.form__btn:active {
+  color: #fff;
+  background-color: #333;
+}
+
+.error {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  color: red;
+  margin-top: -3px;
+  transition: all 0.2s ease-in-out;
+}
+
+.invalid + .error {
+  max-height: 100%;
+}
+
+.form::before {
+  display: block;
+  position: absolute;
+  content: 'Successfully added!';
+  z-index: -1;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #99fcba;
+  border: 2px solid #28974d;
+  color: #28974d;
+  border-radius: 10px;
+  transition: all 1s ease;
+  padding: 8px;
+  top: 5px;
+}
+
+.form.success::before {
+  z-index: 100;
+  opacity: 1;
+}
