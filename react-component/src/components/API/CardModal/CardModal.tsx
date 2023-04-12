@@ -11,7 +11,7 @@ export default function CardModal({ character, toggle }: ModalProps) {
   const onModalBgClick = (e: React.MouseEvent<HTMLElement>) => {
     if (!(e.target instanceof HTMLElement)) return;
     if (!e.target.classList.contains(styles.modal)) return;
-    toggle();s
+    toggle();
   };
 
   return (

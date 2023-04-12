@@ -42,7 +42,6 @@ export default function CardWidget() {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(search);
     getCharacters(page, search)
       .then((val) => setResponse(val))
       .finally(() => setIsLoading(false));
