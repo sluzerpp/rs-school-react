@@ -8,7 +8,6 @@ import { MemoryRouter } from 'react-router-dom';
 import WrappedApp from './src/WrappedApp';
 import { IResponse } from 'api/types';
 import CardAPI from './src/components/API/CardAPI/CardAPI';
-import CardWidget from './src/components/API/CardWidget/CardWidget';
 import CardModal from './src/components/API/CardModal/CardModal';
 
 function createFetchResponse(data: object) {
