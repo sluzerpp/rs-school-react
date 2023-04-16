@@ -1,21 +1,23 @@
 import SearchBar from '../../../components/SearchBar/SearchBar';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ListAPI from '../ListAPI/ListAPI';
-import { ICharacter, IResponse } from '../../../api/types';
-import { getCharacters } from '../../../api/api';
+import { ICharacter } from '../../../api/types';
 import Spinner from '../../../components/spinner/Spinner';
 import styles from './CardWidget.module.css';
 import CardModal from '../CardModal/CardModal';
+import { useGetCharactersQuery } from '../../../store/slices';
+import { useAppSelector } from './../../../store';
 
 const DEFAULT_PAGE = 1;
 
 export default function CardWidget() {
-  const [response, setResponse] = useState<IResponse>();
   const [page, setPage] = useState(DEFAULT_PAGE);
-  const [isLoading, setIsLoading] = useState(false);
-  const [search, setSearch] = useState('');
+  const { search: searchState } = useAppSelector((state) => state.search);
+  const [search, setSearch] = useState(searchState);
   const [isModal, setIsModal] = useState(false);
   const [modalCharacter, setModalCharacter] = useState<ICharacter>();
+
+  const { data: response, error, isLoading } = useGetCharactersQuery({ page, search });
 
   const onInputSubmit = (search: string) => {
     setSearch(search);
@@ -40,22 +42,6 @@ export default function CardWidget() {
     setIsModal(true);
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    getCharacters(page, search)
-      .then((val) => setResponse(val))
-      .finally(() => setIsLoading(false));
-  }, [page, search]);
-
-  useEffect(() => {
-    const search = localStorage.getItem('search');
-    setSearch(search || '');
-    setIsLoading(true);
-    getCharacters(DEFAULT_PAGE, search || '')
-      .then((val) => setResponse(val))
-      .finally(() => setIsLoading(false));
-  }, []);
-
   return (
     <>
       <div className={styles.controls}>
@@ -63,13 +49,19 @@ export default function CardWidget() {
       </div>
       {!isLoading ? (
         <>
-          <h2>Found {response && response.info ? response.info.count : 0} characters</h2>
-          <ListAPI toggle={toggleModal} characters={response ? response.results : []}></ListAPI>
+          {error ? (
+            <h2>There is nothing here</h2>
+          ) : (
+            <>
+              <h2>Found {response && response.info ? response.info.count : 0} characters</h2>
+              <ListAPI toggle={toggleModal} characters={response ? response.results : []}></ListAPI>
+            </>
+          )}
         </>
       ) : (
         <Spinner />
       )}
-      {response && response.info && (
+      {response && response.info && !error && (
         <div className={styles.pagination}>
           <button onClick={leftBtnHandler} className={styles.btn}>
             {'<'}

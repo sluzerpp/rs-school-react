@@ -1,47 +1,31 @@
+import { useAppDispatch, useAppSelector } from './../../store';
 import './SearchBar.css';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { updateSearch } from '../../store/slices';
 
 type SearchProps = {
   callback: (data: string) => void;
 };
 
 export default function SearchBar({ callback }: SearchProps) {
-  const [value, setValue] = useState('');
-  const searchRef = useRef(value);
+  const dispatch = useAppDispatch();
+  const { search } = useAppSelector((state) => state.search);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setValue(value);
-  };
-
-  const getFromLocalStorage = () => {
-    const value = localStorage.getItem('search');
-    if (value) {
-      setValue(value);
-    }
+    dispatch(updateSearch(value));
   };
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      callback(value);
+      callback(search);
     }
   };
-
-  useEffect(() => {
-    searchRef.current = value;
-  }, [value]);
-
-  useEffect(() => {
-    getFromLocalStorage();
-    return () => {
-      localStorage.setItem('search', searchRef.current);
-    };
-  }, []);
 
   return (
     <div className="search">
       <input
-        value={value}
+        value={search}
         onChange={onChangeHandler}
         onKeyUp={onEnter}
         placeholder="Search..."
