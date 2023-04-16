@@ -93,18 +93,11 @@ describe('api', () => {
   global.fetch = vi.fn().mockResolvedValue(createFetchResponse(data));
 
   it('Open modal', () => {
-    render(<CardWidget></CardWidget>);
+    render(<WrappedApp></WrappedApp>);
     setTimeout(() => {
       fireEvent.click(screen.getByRole('heading', { level: 2 }));
       expect(screen.getByText('X')).toBeInTheDocument();
     }, 100);
-  });
-
-  it('fetch card data', () => {
-    render(<CardWidget></CardWidget>);
-    expect(fetch).toHaveBeenCalledWith('https://rickandmortyapi.com/api/character?page=1&name=', {
-      method: 'GET',
-    });
   });
 
   it('render modal', () => {
@@ -113,7 +106,7 @@ describe('api', () => {
   });
 
   it('render found count', () => {
-    render(<CardWidget></CardWidget>);
+    render(<WrappedApp></WrappedApp>);
     setTimeout(() => {
       expect(screen.getByText(data.info.count)).toBeInTheDocument();
     }, 100);

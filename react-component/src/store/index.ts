@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { characterApi, searchReducer } from './slices';
+import { characterApi, fromCardReducer, searchReducer } from './slices';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 
 const reducers = combineReducers({
   [characterApi.reducerPath]: characterApi.reducer,
   search: searchReducer,
+  formCard: fromCardReducer,
 });
 
 export const store = configureStore({
