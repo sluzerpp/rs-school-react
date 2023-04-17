@@ -17,7 +17,7 @@ export default function CardWidget() {
   const [isModal, setIsModal] = useState(false);
   const [modalCharacter, setModalCharacter] = useState<ICharacter>();
 
-  const { data: response, error, isLoading } = useGetCharactersQuery({ page, search });
+  const { data: response, error, isFetching } = useGetCharactersQuery({ page, search });
 
   const onInputSubmit = (search: string) => {
     setSearch(search);
@@ -47,7 +47,7 @@ export default function CardWidget() {
       <div className={styles.controls}>
         <SearchBar callback={onInputSubmit}></SearchBar>
       </div>
-      {!isLoading ? (
+      {!isFetching ? (
         <>
           {error ? (
             <h2>There is nothing here</h2>
