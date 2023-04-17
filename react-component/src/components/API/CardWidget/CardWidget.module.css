@@ -1,0 +1,31 @@
+.controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #333;
+  border-radius: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.fraction {
+  color: #333;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
