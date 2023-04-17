@@ -38,8 +38,14 @@ export default function CardWidget() {
   };
 
   const toggleModal = (data: ICharacter) => {
-    setModalCharacter(data);
-    setIsModal(true);
+    fetch(`https://rickandmortyapi.com/api/character/${data.id}`, {
+      method: 'GET',
+    })
+      .then(async (res) => (await res.json()) as ICharacter)
+      .then((data) => {
+        setModalCharacter(data);
+        setIsModal(true);
+      });
   };
 
   return (
