@@ -8,12 +8,21 @@ type CardFormProps = {
 
 const TAGS = ['Digital Art', 'Photography', 'Branding', 'Fine Arts'];
 
-export type CardFormData = {
+export type CardForm = {
   name: string;
   date: Date;
   tags: string[];
   creator: string;
   img: FileList;
+  isImportant: boolean;
+};
+
+export type CardFormData = {
+  name: string;
+  date: string;
+  tags: string[];
+  creator: string;
+  img: string;
   isImportant: boolean;
 };
 
@@ -23,7 +32,7 @@ export default function CardForm({ submitCallback }: CardFormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<CardFormData>({
+  } = useForm<CardForm>({
     defaultValues: { creator: 'Anonim' },
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -37,8 +46,12 @@ export default function CardForm({ submitCallback }: CardFormProps) {
     return true;
   };
 
-  const onSubmit = (data: CardFormData) => {
-    submitCallback(data);
+  const onSubmit = (data: CardForm) => {
+    submitCallback({
+      ...data,
+      date: data.date.toLocaleString(),
+      img: URL.createObjectURL(data.img[0]),
+    });
     setIsSuccess(true);
     reset();
     setTimeout(() => {
@@ -78,7 +91,7 @@ export default function CardForm({ submitCallback }: CardFormProps) {
         })}
       </div>
       <div className="error">{errors.tags?.message}</div>
-      <select defaultValue="Anonim" className="form__select">
+      <select {...register('creator')} className="form__select">
         <option value="Anonim">Anonim</option>
         <option value="God">God</option>
         <option value="Vova">Vova</option>

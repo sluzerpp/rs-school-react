@@ -20,7 +20,7 @@ export default function Card(props: CardProps) {
         <a href="#" className="card__title">
           <h2>{name}</h2>
         </a>
-        <div className="card__date">{date.toLocaleDateString()}</div>
+        <div className="card__date">{date}</div>
         <a href="#" className="card__creator">
           by <span>{creator}</span>
         </a>

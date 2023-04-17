@@ -6,7 +6,7 @@ export interface IProjectData {
   likes: number;
   views: number;
   img: string;
-  date: Date;
+  date: string;
   isImportant: boolean;
 }
 
@@ -21,7 +21,7 @@ export const CardData: IProjectData[] = [
     likes: 432,
     views: 1233,
     img: 'https://picsum.photos/1280/1080',
-    date: new Date('05.05.2022'),
+    date: '05.05.2022',
     isImportant: true,
   },
   {
@@ -32,7 +32,7 @@ export const CardData: IProjectData[] = [
     likes: 555,
     views: 543,
     img: 'https://picsum.photos/1280/1380',
-    date: new Date('05.04.2022'),
+    date: '05.04.2022',
     isImportant: false,
   },
   {
@@ -43,7 +43,7 @@ export const CardData: IProjectData[] = [
     likes: 2,
     views: 773,
     img: 'https://picsum.photos/1080/1280',
-    date: new Date('05.05.2022'),
+    date: '05.05.2022',
     isImportant: true,
   },
   {
@@ -54,7 +54,7 @@ export const CardData: IProjectData[] = [
     likes: 75,
     views: 325,
     img: 'https://picsum.photos/1080/1080',
-    date: new Date('07.07.2022'),
+    date: '07.07.2022',
     isImportant: true,
   },
   {
@@ -65,7 +65,7 @@ export const CardData: IProjectData[] = [
     likes: 343,
     views: 549,
     img: 'https://picsum.photos/1280/980',
-    date: new Date('01.05.2022'),
+    date: '01.05.2022',
     isImportant: false,
   },
   {
@@ -76,7 +76,7 @@ export const CardData: IProjectData[] = [
     likes: 756,
     views: 9000,
     img: 'https://picsum.photos/1380/1080',
-    date: new Date('05.09.2022'),
+    date: '05.09.2022',
     isImportant: false,
   },
   {
@@ -87,7 +87,7 @@ export const CardData: IProjectData[] = [
     likes: 345,
     views: 435,
     img: 'https://picsum.photos/1280/1580',
-    date: new Date('05.05.2022'),
+    date: '05.05.2022',
     isImportant: false,
   },
   {
@@ -98,7 +98,7 @@ export const CardData: IProjectData[] = [
     likes: 52,
     views: 7541,
     img: 'https://picsum.photos/1080/1280',
-    date: new Date('05.05.2022'),
+    date: '05.05.2022',
     isImportant: false,
   },
   {
@@ -109,7 +109,7 @@ export const CardData: IProjectData[] = [
     likes: 4,
     views: 13,
     img: 'https://picsum.photos/1280/1280',
-    date: new Date('05.05.2022'),
+    date: '05.05.2022',
     isImportant: false,
   },
   {
@@ -120,7 +120,7 @@ export const CardData: IProjectData[] = [
     likes: 1043,
     views: 1233,
     img: 'https://picsum.photos/1080/1080',
-    date: new Date('05.05.2022'),
+    date: '',
     isImportant: true,
   },
 ];

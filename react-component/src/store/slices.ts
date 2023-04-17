@@ -44,10 +44,8 @@ const formCardSlice = createSlice({
   initialState,
   reducers: {
     addCard: (state, action: PayloadAction<CardFormData>) => {
-      const url = URL.createObjectURL(action.payload.img[0]);
       state.cards.push({
         ...action.payload,
-        img: url,
         likes: 0,
         views: 0,
         id: state.id,
