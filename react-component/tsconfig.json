@@ -16,5 +16,6 @@
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["./src/**/*", "styled.d.ts", "App.test.tsx"]
+  "include": ["./src/**/*", "styled.d.ts", "App.test.tsx"],
+  "ts-node": { "esm": true, "experimentalSpecifierResolution": "node" }
 }
