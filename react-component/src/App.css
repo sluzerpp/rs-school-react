@@ -1,0 +1,29 @@
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  gap: 10px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 0 40px;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.form-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  flex-direction: column;
+  gap: 20px; 
+}

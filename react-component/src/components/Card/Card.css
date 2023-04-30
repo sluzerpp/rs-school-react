@@ -1,0 +1,119 @@
+.card {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #33333370;
+  background-color: #ffffff90;
+  position: relative;
+}
+
+.card svg {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  stroke-width: 20px;
+  fill: #333333;
+}
+
+.card__img {
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.card__important {
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  font-weight: bold;
+  color: rgb(230, 130, 0);
+  background-color: #ffffff;
+  padding: 6px 16px 8px 10px;
+  border-radius: 0 20px 5px 0;
+  box-shadow: 0 0 5px #33333370;
+}
+
+.card__content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  min-height: 100px;
+  position: relative;
+}
+
+.card__content::after {
+  display: block;
+  content: '';
+  width: calc(100% - 20px);
+  height: 2px;
+  background-color: #333;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+
+.card__tags {
+  display: block;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-transform: capitalize;
+  padding: 10px;
+  color: #333333aa;
+}
+
+.card__footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 10px;
+  align-items: center;
+  background-color: #33333310;
+  gap: 10px;
+}
+
+.card__footer button {
+  outline: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.card__counters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-right: 2px solid #33333340;
+  height: 100%;
+}
+
+.card__counter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+}
+
+.card__title {
+  text-transform: capitalize;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.card__creator {
+  text-decoration: none;
+  color: #333333aa;
+}
+
+.card__creator span {
+  color: rgb(230, 130, 0);
+  font-weight: 500;
+}
